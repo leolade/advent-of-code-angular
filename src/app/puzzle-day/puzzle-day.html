@@ -1,1 +1,19 @@
-<p>puzzle-day works!</p>
+<div class="stats shadow">
+    <div class="stat">
+        <div class="stat-title">Execution result</div>
+        <div class="stat-value">
+            @if (dureeExecution() >= 0) {
+                {{ results() }}
+            } @else {
+                Running...
+            }
+        </div>
+        <div class="stat-desc">
+            @if (dureeExecution() >= 0) {
+                Execution time: {{ dureeExecution() }}ms
+            } @else {
+                Execution in progress...
+            }
+        </div>
+    </div>
+</div>

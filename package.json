@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build"
+    "build": "ng build",
+    "generate-day": "tsc -p generate-day/tsconfig.json && schematics generate-day:generate-day"
   },
   "dependencies": {
     "@angular-devkit/schematics-cli": "^20.3.9",
@@ -15,7 +16,12 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@tailwindcss/postcss": "^4.1.16",
+    "daisyui": "^5.4.5",
+    "generate-day": "link:./generate-day",
+    "postcss": "^8.5.6",
     "rxjs": "^7.8.1",
+    "tailwindcss": "^4.1.16",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
