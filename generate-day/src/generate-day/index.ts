@@ -42,13 +42,13 @@ function partNames(day: number, year: number, part: number) {
     return {inputVar, className, inputFile, classFile};
 }
 
-function createPartFiles(tree: Tree, year: number, day: number, part: number) {
+function createPartFiles(tree: Tree, year: number, day: number, name: string, part: number) {
     const {inputVar, className} = partNames(day, year, part);
     const inputPath = `src/app/${year}/${day}/part${part}-day${day}-${year}-input.ts`;
     const classPath = `src/app/${year}/${day}/part${part}-day${day}-${year}.ts`;
 
     if (!tree.exists(inputPath)) {
-        const inputContent = `export const ${inputVar}: string = '';
+        const inputContent = `export const ${inputVar}: string = \`\`;
 `;
         tree.create(inputPath, inputContent);
     }
@@ -60,10 +60,12 @@ import {Solution} from "../../puzzle-day/solution";
 @Injectable()
 export class ${className} extends Solution<string, string> {
 
+    problemName: string = '${name} - Part ${part}';
+
     protected override process(input: string): string {
         return 'Method not implemented.';
     }
-  
+
 }
 `;
         tree.create(classPath, classContent);
@@ -207,10 +209,10 @@ function updateAppRoutes(tree: Tree, _context: SchematicContext, year: number, d
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function generateDay(options: { year: string | number; day: string | number }): Rule {
+export function generateDay(options: { year: string | number; day: string | number; name: string }): Rule {
     return (tree: Tree, _context: SchematicContext) => {
-        if (!options || !options.year || !options.day) {
-            throw new Error('You must provide --year and --day');
+        if (!options || !options.year || !options.day || !options.name) {
+            throw new Error('You must provide --year --day and --name options');
         }
 
         const filePath = 'src/puzzle-registred.ts';
@@ -241,8 +243,8 @@ export function generateDay(options: { year: string | number; day: string | numb
         }
 
         // Créer les fichiers pour part1 et part2
-        createPartFiles(tree, yearNum, dayNum, 1);
-        createPartFiles(tree, yearNum, dayNum, 2);
+        createPartFiles(tree, yearNum, dayNum, options.name, 1);
+        createPartFiles(tree, yearNum, dayNum, options.name, 2);
 
         // Mettre à jour app.routes.ts si présent
         updateAppRoutes(tree, _context, yearNum, dayNum);

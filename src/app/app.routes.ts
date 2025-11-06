@@ -1,4 +1,4 @@
-import {PuzzleDay} from "./puzzle-day/puzzle-day";
+import {PuzzlePart} from "./puzzle-day/puzzle-part.component";
 import {PUZZLE_INPUT} from "./puzzle-day/puzzle-input";
 import {part1Day12024Input} from "./2024/1/part1-day1-2024-input";
 import {SOLUTION_SERVICE} from "./puzzle-day/solution-service";
@@ -15,7 +15,7 @@ import {Part2Day22024} from "./2024/2/part2-day2-2024";
 export const routes: Routes = [
     {
         path: '2024/1/1',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: part1Day12024Input}, {
             provide: SOLUTION_SERVICE,
             useClass: Part1Day12024
@@ -23,7 +23,7 @@ export const routes: Routes = [
     },
     {
         path: '2024/1/2',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: part2Day12024Input}, {
             provide: SOLUTION_SERVICE,
             useClass: Part2Day12024
@@ -31,7 +31,7 @@ export const routes: Routes = [
     },
     {
         path: '2024/2/1',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: part1Day22024Input}, {
             provide: SOLUTION_SERVICE,
             useClass: Part1Day22024
@@ -39,7 +39,7 @@ export const routes: Routes = [
     },
     {
         path: '2024/2/2',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: part2Day22024Input}, {
             provide: SOLUTION_SERVICE,
             useClass: Part2Day22024

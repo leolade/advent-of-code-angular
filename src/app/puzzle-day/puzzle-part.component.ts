@@ -5,11 +5,11 @@ import {Solution} from "./solution";
 @Component({
     selector: 'app-puzzle-day',
     imports: [],
-    templateUrl: './puzzle-day.html',
-    styleUrls: ['./puzzle-day.css'],
-    host: {'class': 'flex grow h-full items-center justify-center'},
+    templateUrl: './puzzle-part.component.html',
+    styleUrls: ['./puzzle-part.component.css'],
+    host: {'class': 'flex flex-col grow h-full items-center justify-center'},
 })
-export class PuzzleDay {
+export class PuzzlePart {
     solution: Solution = inject(SOLUTION_SERVICE);
     dureeExecution: WritableSignal<number> = signal(-1);
     results: WritableSignal<string> = signal('Résultats en cours de calcul...');
