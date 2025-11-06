@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-puzzle-day',
   imports: [],
   templateUrl: './puzzle-day.html',
-  styleUrl: './puzzle-day.css'
+  styleUrls: ['./puzzle-day.css']
 })
 export class PuzzleDay {
 

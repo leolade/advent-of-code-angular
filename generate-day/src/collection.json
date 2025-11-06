@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "generate-day": {
+      "description": "A blank schematic.",
+      "factory": "./generate-day/index#generateDay"
+    }
+  }
+}
