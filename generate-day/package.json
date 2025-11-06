@@ -1,25 +1,37 @@
 {
-  "name": "generate-day",
-  "version": "0.0.0",
-  "description": "A blank schematics",
+  "name": "@leolade/generate-day-aoc",
+  "version": "0.1.0",
+  "description": "Angular schematics to generate a day scaffold for Advent of Code projects",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "prepare": "npm run build && node ./scripts/copy-collection.js"
   },
   "keywords": [
-    "schematics"
+    "schematics",
+    "angular",
+    "advent-of-code",
+    "generate-day"
   ],
   "author": "",
   "license": "MIT",
-  "schematics": "./src/collection.json",
+  "main": "dist/generate-day/index.js",
+  "types": "dist/generate-day/index.d.ts",
+  "schematics": "dist/collection.json",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@angular-devkit/core": "^20.3.9",
     "@angular-devkit/schematics": "^20.3.9",
     "typescript": "~5.9.2"
   },
   "devDependencies": {
-    "@types/node": "^20.17.19",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
     "jasmine": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
