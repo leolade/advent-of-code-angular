@@ -35,17 +35,17 @@ export function addPuzzleEntry(content: string, year: number, day: number): stri
 }
 
 function partNames(day: number, year: number, part: number) {
-    const inputVar = `part${part}Day${day}${year}Input`;
-    const className = `Part${part}Day${day}${year}`;
-    const inputFile = `./${year}/${day}/part${part}-day${day}-${year}-input`;
-    const classFile = `./${year}/${day}/part${part}-day${day}-${year}`;
+    const inputVar = `day${day}Part${part}${year}Input`;
+    const className = `Day${day}Part${part}${year}`;
+    const inputFile = `./${year}/${day}/day${day}-part${part}-${year}-input`;
+    const classFile = `./${year}/${day}/day${day}-part${part}-${year}`;
     return {inputVar, className, inputFile, classFile};
 }
 
 function createPartFiles(tree: Tree, year: number, day: number, name: string, part: number) {
     const {inputVar, className} = partNames(day, year, part);
-    const inputPath = `src/app/${year}/${day}/part${part}-day${day}-${year}-input.ts`;
-    const classPath = `src/app/${year}/${day}/part${part}-day${day}-${year}.ts`;
+    const inputPath = `src/app/${year}/${day}/day${day}-part${part}-${year}-input.ts`;
+    const classPath = `src/app/${year}/${day}/day${day}-part${part}-${year}.ts`;
 
     if (!tree.exists(inputPath)) {
         const inputContent = `export const ${inputVar}: string = \`\`;
@@ -117,7 +117,7 @@ function updateAppRoutes(tree: Tree, _context: SchematicContext, year: number, d
     // Construire les routes à ajouter
     const route1 = `    {
         path: '${year}/${day}/1',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: ${p1.inputVar}}, {
             provide: SOLUTION_SERVICE,
             useClass: ${p1.className}
@@ -126,7 +126,7 @@ function updateAppRoutes(tree: Tree, _context: SchematicContext, year: number, d
 
     const route2 = `    {
         path: '${year}/${day}/2',
-        component: PuzzleDay,
+        component: PuzzlePart,
         providers: [{provide: PUZZLE_INPUT, useValue: ${p2.inputVar}}, {
             provide: SOLUTION_SERVICE,
             useClass: ${p2.className}

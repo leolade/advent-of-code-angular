@@ -1,12 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {PUZZLE_INPUT} from "./puzzle-input";
 import {InputUtils} from "../utils/services/input-utils";
+import {interval, Observable, of, switchMap, take} from "rxjs";
 
 @Injectable()
 export abstract class Solution<InputType = string, ResultType = string> {
 
   private rawInput: string = inject(PUZZLE_INPUT);
-  private inputUtils: InputUtils = inject(InputUtils);
+  inputUtils: InputUtils = inject(InputUtils);
 
   abstract problemName: string;
 
@@ -18,8 +19,8 @@ export abstract class Solution<InputType = string, ResultType = string> {
     return rawInput as unknown as InputType;
   }
 
-  generateResult(): ResultType {
-    return this.process(this.transform(this.rawInput));
+  generateResult(): Observable<ResultType> {
+    return of(this.process(this.transform(this.rawInput)));
   }
 
   protected abstract process(input: InputType): ResultType;

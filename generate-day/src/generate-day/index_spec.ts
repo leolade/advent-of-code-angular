@@ -67,7 +67,7 @@ export const puzzledRegistred: PuzzleRegistred[] = [
       tree.create('src/puzzle-registred.ts', puzzle);
 
       // app.routes.ts initial avec un seul objet sans virgule finale entre objets
-      const badRoutes = `import {PuzzleDay} from "./puzzle-day/puzzle-day";\nimport {PUZZLE_INPUT} from "./puzzle-day/puzzle-input";\nimport {Routes} from "@angular/router";\n\nexport const routes: Routes = [\n    {\n        path: '2024/1/1',\n        component: PuzzleDay,\n        providers: [{provide: PUZZLE_INPUT, useValue: null}]\n    }\n];\n`;
+      const badRoutes = `import {PuzzlePart} from "./puzzle-day/puzzle-part.component";";\nimport {PUZZLE_INPUT} from "./puzzle-day/puzzle-input";\nimport {Routes} from "@angular/router";\n\nexport const routes: Routes = [\n    {\n        path: '2024/1/1',\n        component: PuzzlePart,\n        providers: [{provide: PUZZLE_INPUT, useValue: null}]\n    }\n];\n`;
       tree.create('src/app/app.routes.ts', badRoutes);
 
       const result = await runner.runSchematic('generate-day', { year: 2024, day: 1 }, tree);
