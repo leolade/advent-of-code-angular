@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "generate-day",
+  "$id": "generate-day",
   "title": "Generate day schematic",
   "type": "object",
   "properties": {

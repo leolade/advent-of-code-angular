@@ -48,26 +48,21 @@ function createPartFiles(tree: Tree, year: number, day: number, name: string, pa
     const classPath = `src/app/${year}/${day}/day${day}-part${part}-${year}.ts`;
 
     if (!tree.exists(inputPath)) {
-        const inputContent = `export const ${inputVar}: string = \`\`;
-`;
-        tree.create(inputPath, inputContent);
+        // Si c'est la part 2, par défaut on référence l'input de la part 1 (comme dans l'exemple fourni)
+        if (part === 2) {
+            const p1 = partNames(day, year, 1);
+            // Utiliser un chemin relatif local pour l'import dans le même dossier que le fichier cible
+            const p1LocalImport = `./day${day}-part1-${year}-input`;
+            const inputContent = `import {${p1.inputVar}} from "${p1LocalImport}";\n\nexport const ${inputVar}: string = ${p1.inputVar};\n`;
+            tree.create(inputPath, inputContent);
+        } else {
+            const inputContent = `export const ${inputVar}: string = \`\`;\n`;
+            tree.create(inputPath, inputContent);
+        }
     }
 
     if (!tree.exists(classPath)) {
-        const classContent = `import { Injectable } from '@angular/core';
-import {Solution} from "../../puzzle-day/solution";
-
-@Injectable()
-export class ${className} extends Solution<string, string> {
-
-    problemName: string = '${name} - Part ${part}';
-
-    protected override process(input: string): string {
-        return 'Method not implemented.';
-    }
-
-}
-`;
+        const classContent = `import { Injectable } from '@angular/core';\nimport {Solution} from "../../puzzle-day/solution";\n\n@Injectable()\nexport class ${className} extends Solution<string, string> {\n\n    problemName: string = '${name} - Part ${part}';\n\n    protected override process(input: string): string {\n        return 'Method not implemented.';\n    }\n\n}\n`;
         tree.create(classPath, classContent);
     }
 }
@@ -96,10 +91,20 @@ function updateAppRoutes(tree: Tree, _context: SchematicContext, year: number, d
     const import2Input = `import {${p2.inputVar}} from "${p2.inputFile}";`;
     const import2Class = `import {${p2.className}} from "${p2.classFile}";`;
 
+    // imports communs nécessaires
+    const commonImportPuzzlePart = `import {PuzzlePart} from "./puzzle-day/puzzle-part.component";`;
+    const commonImportInput = `import {PUZZLE_INPUT} from "./puzzle-day/puzzle-input";`;
+    const commonImportService = `import {SOLUTION_SERVICE} from "./puzzle-day/solution-service";`;
+
     if (!content.includes(import1Input)) { importLines.push(import1Input); }
     if (!content.includes(import1Class)) { importLines.push(import1Class); }
     if (!content.includes(import2Input)) { importLines.push(import2Input); }
     if (!content.includes(import2Class)) { importLines.push(import2Class); }
+
+    // ajouter les imports communs s'ils sont absents
+    if (!content.includes(commonImportPuzzlePart)) { importLines.push(commonImportPuzzlePart); }
+    if (!content.includes(commonImportInput)) { importLines.push(commonImportInput); }
+    if (!content.includes(commonImportService)) { importLines.push(commonImportService); }
 
     if (importLines.length > 0) {
         // insérer après le dernier import existant
@@ -115,23 +120,13 @@ function updateAppRoutes(tree: Tree, _context: SchematicContext, year: number, d
     }
 
     // Construire les routes à ajouter
-    const route1 = `    {
-        path: '${year}/${day}/1',
-        component: PuzzlePart,
-        providers: [{provide: PUZZLE_INPUT, useValue: ${p1.inputVar}}, {
-            provide: SOLUTION_SERVICE,
-            useClass: ${p1.className}
-        }]
-    },\n`;
+    const route1 = `    {\n        path: '${year}/${day}/1',\n        component: PuzzlePart,\n        providers: [{provide: PUZZLE_INPUT, useValue: ${p1.inputVar}}, {\n            provide: SOLUTION_SERVICE,\n            useClass: ${p1.className}\n        }]\n    },\n`;
 
-    const route2 = `    {
-        path: '${year}/${day}/2',
-        component: PuzzlePart,
-        providers: [{provide: PUZZLE_INPUT, useValue: ${p2.inputVar}}, {
-            provide: SOLUTION_SERVICE,
-            useClass: ${p2.className}
-        }]
-    },\n`;
+    const route2 = `    {\n        path: '${year}/${day}/2',\n        component: PuzzlePart,\n        providers: [{provide: PUZZLE_INPUT, useValue: ${p2.inputVar}}, {\n            provide: SOLUTION_SERVICE,\n            useClass: ${p2.className}\n        }]\n    },\n`;
+
+    // Replace escaped-backslash sequences (literal "\\n") accidentally present in content
+    // (Cas où des blocs précédemment insérés contiennent des séquences '\\n') => les convertir en vrais retours à la ligne
+    content = content.replace(/\\n/g, '\n');
 
     // Repérer la déclaration export const routes: Routes = [
     const routesDeclRegex = /export\s+const\s+routes\s*:\s*Routes\s*=\s*\[/m;
