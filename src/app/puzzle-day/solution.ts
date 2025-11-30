@@ -1,18 +1,19 @@
-import {inject, Injectable} from '@angular/core';
-import {PUZZLE_INPUT} from "./puzzle-input";
-import {InputUtils} from "../utils/services/input-utils";
-import {Observable, of} from "rxjs";
+import { inject, Injectable } from '@angular/core';
+import { PUZZLE_INPUT } from './puzzle-input';
+import { InputUtils } from '../utils/services/input-utils';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export abstract class Solution<InputType = string, ResultType = string> {
-
   private rawInput: string = inject(PUZZLE_INPUT);
   inputUtils: InputUtils = inject(InputUtils);
 
   abstract problemName: string;
 
   protected transform(rawInput: string): InputType {
-    console.debug("Aucune fonction de transformation n'a été définie pour ce puzzle.");
+    console.debug(
+      "Aucune fonction de transformation n'a été définie pour ce puzzle.",
+    );
     return rawInput as unknown as InputType;
   }
 

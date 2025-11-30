@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StringUtils {
-
   getAllCharIndexes(str: string, char: string): number[] {
     const indexes: number[] = [];
     let currentIndex = str.indexOf(char);
@@ -14,5 +13,4 @@ export class StringUtils {
     }
     return indexes;
   }
-
 }

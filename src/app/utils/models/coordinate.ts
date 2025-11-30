@@ -1,33 +1,33 @@
-import {CardinalPoint} from "./cardinal-point";
+import { CardinalPoint } from './cardinal-point';
 
 export class Coordinate {
-  constructor(public x: number, public y: number) {
-  }
+  constructor(
+    public x: number,
+    public y: number,
+  ) {}
 
   translate(x: number, y: number) {
-    return new Coordinate(this.x + x, this.y + y)
+    return new Coordinate(this.x + x, this.y + y);
   }
 
   translateByCardinalPoint(cardinalPoints: CardinalPoint[]): Coordinate {
     let result: Coordinate = new Coordinate(this.x, this.y);
-    cardinalPoints.forEach(
-      (cardinalPoint: CardinalPoint) => {
-        switch (cardinalPoint) {
-          case 'N':
-            result = result.translate(0, -1);
-            break;
-          case 'S':
-            result = result.translate(0, 1);
-            break;
-          case 'E':
-            result = result.translate(1, 0);
-            break;
-          case 'W':
-            result = result.translate(-1, 0);
-            break;
-        }
+    cardinalPoints.forEach((cardinalPoint: CardinalPoint) => {
+      switch (cardinalPoint) {
+        case 'N':
+          result = result.translate(0, -1);
+          break;
+        case 'S':
+          result = result.translate(0, 1);
+          break;
+        case 'E':
+          result = result.translate(1, 0);
+          break;
+        case 'W':
+          result = result.translate(-1, 0);
+          break;
       }
-    )
+    });
     return result;
   }
 

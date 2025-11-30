@@ -8,9 +8,8 @@ describe('PuzzleDay', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PuzzlePart]
-    })
-    .compileComponents();
+      imports: [PuzzlePart],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PuzzlePart);
     component = fixture.componentInstance;

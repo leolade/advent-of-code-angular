@@ -3,9 +3,7 @@
   "cli": {
     "analytics": "1e1de97b-a744-405a-8b5a-0397bb3d01ce",
     "packageManager": "yarn",
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -36,9 +34,7 @@
             "outputPath": "dist/demo",
             "polyfills": [],
             "scripts": [],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["src/styles.css"],
             "tsConfig": "tsconfig.app.json"
           }
         },
@@ -57,10 +53,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       },

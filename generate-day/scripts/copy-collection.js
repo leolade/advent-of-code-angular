@@ -33,4 +33,3 @@ fs.writeFileSync(dest, content);
 fs.writeFileSync(destSchema, contentSchema);
 console.log(`Copied ${src} -> ${dest}`);
 console.log(`Copied ${srcSchema} -> ${destSchema}`);
-

@@ -19,14 +19,12 @@ Ce package fournit un schéma Angular (`schematic`) permettant de créer les fic
   npm install --save-dev @leolade/generate-day-aoc
 
 - Pour développer localement depuis le dossier `generate-day` :
-
   1. Dans `generate-day`, compiler le projet :
      npm run build
   2. Lier localement le paquet :
      npm link
   3. Dans le projet Angular où vous voulez utiliser le schéma, faire :
      npm link @leolade/generate-day-aoc
-
 
 ## Utilisation
 
@@ -43,7 +41,6 @@ Exemples :
 
 - Générer un jour avec options (exemple hypothétique) :
   ng g @leolade/generate-day-aoc:generate-day --day 1 --year 2024
-
 
 ## Publication sur npm
 
@@ -68,4 +65,3 @@ Remarque : le champ `publishConfig.access` est déjà défini sur `public` dans 
 ## Licence
 
 MIT
-
