@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "generate-day",
+  "title": "Generate day schematic",
+  "type": "object",
+  "properties": {
+    "year": {
+      "type": ["string", "number"],
+      "description": "Année du puzzle"
+    },
+    "day": {
+      "type": ["string", "number"],
+      "description": "Numéro du jour"
+    },
+    "name": {
+      "type": "string",
+      "description": "Nom du puzzle"
+    }
+  },
+  "required": ["year", "day", "name"]
+}

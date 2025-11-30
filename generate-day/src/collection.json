@@ -3,7 +3,8 @@
   "schematics": {
     "generate-day": {
       "description": "A blank schematic.",
-      "factory": "./generate-day/index#generateDay"
+      "factory": "./generate-day/index#generateDay",
+      "schema": "./generate-day/schema.json"
     }
   }
 }

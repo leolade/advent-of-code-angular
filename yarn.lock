@@ -1440,7 +1440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@leolade/generate-day-aoc@npm:^0.1.0, @leolade/generate-day-aoc@workspace:generate-day":
+"@leolade/generate-day-aoc@npm:^0.1.5, @leolade/generate-day-aoc@workspace:generate-day":
   version: 0.0.0-use.local
   resolution: "@leolade/generate-day-aoc@workspace:generate-day"
   dependencies:
@@ -2706,7 +2706,7 @@ __metadata:
     "@angular/forms": "npm:^21.0.0-rc.3"
     "@angular/platform-browser": "npm:^21.0.0-rc.3"
     "@angular/router": "npm:^21.0.0-rc.3"
-    "@leolade/generate-day-aoc": "npm:^0.1.0"
+    "@leolade/generate-day-aoc": "npm:^0.1.5"
     "@tailwindcss/postcss": "npm:^4.1.17"
     daisyui: "npm:^5.4.8"
     postcss: "npm:^8.5.6"
