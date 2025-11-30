@@ -56,13 +56,13 @@ function createPartFiles(tree: Tree, year: number, day: number, name: string, pa
             const inputContent = `import {${p1.inputVar}} from "${p1LocalImport}";\n\nexport const ${inputVar}: string = ${p1.inputVar};\n`;
             tree.create(inputPath, inputContent);
         } else {
-            const inputContent = `export const ${inputVar}: string = \`\`;\n`;
+            const inputContent = `export const ${inputVar} = \`\`;\n`;
             tree.create(inputPath, inputContent);
         }
     }
 
     if (!tree.exists(classPath)) {
-        const classContent = `import { Injectable } from '@angular/core';\nimport {Solution} from "../../puzzle-day/solution";\n\n@Injectable()\nexport class ${className} extends Solution<string, string> {\n\n    problemName: string = '${name} - Part ${part}';\n\n    protected override process(input: string): string {\n        return 'Method not implemented.';\n    }\n\n}\n`;
+        const classContent = `import { Injectable } from '@angular/core';\nimport {Solution} from "../../puzzle-day/solution";\n\n@Injectable()\nexport class ${className} extends Solution<string, string> {\n\n    problemName = '${name} - Part ${part}';\n\n    protected override process(input: string): string {\n        return 'Method not implemented.';\n    }\n\n}\n`;
         tree.create(classPath, classContent);
     }
 }
