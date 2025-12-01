@@ -3,4 +3,5 @@ export interface PuzzleRegistred {
   day: number;
 }
 
-export const puzzledRegistred: PuzzleRegistred[] = [];
+export const puzzledRegistred: PuzzleRegistred[] = [    {year: 2025, day: 1},
+];
