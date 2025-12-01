@@ -8,7 +8,11 @@ export class InputUtils {
     return s.split('\n').map((s: string) => parseInt(s));
   }
 
+  toStringArray(s: string): string[] {
+    return s.split('\n');
+  }
+
   toString2DArray(s: string): string[][] {
-    return s.split('\n').map((s: string) => s.split(''));
+    return this.toStringArray(s).map((s: string) => s.split(''));
   }
 }
