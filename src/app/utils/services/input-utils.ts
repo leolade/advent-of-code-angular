@@ -15,4 +15,8 @@ export class InputUtils {
   toString2DArray(s: string): string[][] {
     return this.toStringArray(s).map((s: string) => s.split(''));
   }
+
+  toNumber2DArray(s: string): number[][] {
+    return this.toStringArray(s).map((s: string) => s.split('').map((s: string) => parseInt(s)));
+  }
 }
