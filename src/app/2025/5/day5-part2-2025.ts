@@ -17,8 +17,28 @@ export class Day5Part22025 extends Solution<string, number> {
             merged = 0;
             ranges = ranges.reduce(
                 (prev, current) => {
-                    const rangeToMerge = prev.find(([min, max]) => {
-                        return (current[0] >= min && current[0] <= max) || (current[1] >= min && current[1] <= max)
+                    const valeurMinimaleTrancheEnCours = current[0];
+                    const valeurMaximaleTrancheEnCours = current[1];
+                    const rangeToMerge = prev.find(([valeurMinTrancheIterator, valeurMaxTrancheIterator]) => {
+                        let isBetween = [
+                            this.isBeteween(valeurMinimaleTrancheEnCours, valeurMinTrancheIterator, valeurMaxTrancheIterator),
+                            this.isBeteween(valeurMaximaleTrancheEnCours, valeurMinTrancheIterator, valeurMaxTrancheIterator)
+                        ];
+
+                        if (isBetween.some((b) => b)) {
+                            return true;
+                        }
+
+                        isBetween = [
+                            this.isBeteween(valeurMinTrancheIterator, valeurMinimaleTrancheEnCours, valeurMaximaleTrancheEnCours),
+                            this.isBeteween(valeurMaxTrancheIterator, valeurMinimaleTrancheEnCours, valeurMaximaleTrancheEnCours)
+                        ];
+
+                        if (isBetween.some((b) => b)) {
+                            return true;
+                        }
+
+                        return false;
                     });
 
                     if (!rangeToMerge) {
@@ -26,13 +46,11 @@ export class Day5Part22025 extends Solution<string, number> {
                         return prev;
                     }
 
-                    if ((current[0] >= rangeToMerge[0] && current[0] <= rangeToMerge[1]) && (current[1] >= rangeToMerge[0] && current[1] <= rangeToMerge[1])) {
-                        return prev;
-                    } else if (current[0] >= rangeToMerge[0] && current[0] <= rangeToMerge[1]) {
-                        rangeToMerge[1] = current[1];
-                    } else {
-                        rangeToMerge[0] = current[0];
-                    }
+                    const valeurMinimaleTrancheAMerger = rangeToMerge[0];
+                    const valeurMaximaleTrancheAMerger = rangeToMerge[1];
+                    rangeToMerge[0] = Math.min(valeurMinimaleTrancheEnCours, valeurMinimaleTrancheAMerger);
+                    rangeToMerge[1] = Math.max(valeurMaximaleTrancheEnCours, valeurMaximaleTrancheAMerger);
+
                     merged +=1;
                     return prev;
                 },
@@ -40,6 +58,10 @@ export class Day5Part22025 extends Solution<string, number> {
             )
         }
         return ranges.reduce((acc, [min, max]) => acc + (max - min + 1), 0);
+    }
+
+    isBeteween(v: number, vmin: number, vmax: number) {
+        return v >= vmin && v <= vmax;
     }
 
 }
