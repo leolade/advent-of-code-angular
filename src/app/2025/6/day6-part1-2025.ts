@@ -25,7 +25,6 @@ export class Day6Part12025 extends Solution<string, number> {
         });
         return prev;
       }, []);
-    console.log(problems);
     const solutions: number[] = problems.map(([operation, numbers]: [string, number[]]) => {
       return (numbers.slice(1) || []).reduce<number>((prev, curr) => {
         switch (operation) {
@@ -41,7 +40,6 @@ export class Day6Part12025 extends Solution<string, number> {
         return 0;
       }, numbers[0])
     })
-    console.log(solutions);
     return solutions
       .reduce(this.arrayUtils.sum, 0);
   }
