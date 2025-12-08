@@ -14,7 +14,6 @@ export class Day2Part22025 extends Solution<string, number> {
         const invalidIds = input.split(',')
             .map(range => new ProductRangeP2(parseInt(range.split('-')[0]), parseInt(range.split('-')[1])))
             .map(range => range.getInvalidIds())
-        console.log(invalidIds);
         return invalidIds
             .flatMap(ids => ids)
             .reduce(this.arrayUtils.sum, 0);
