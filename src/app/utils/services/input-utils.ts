@@ -12,6 +12,10 @@ export class InputUtils {
     return s.split('\n');
   }
 
+  splitByWhitespaces(s: string): string[] {
+    return s.match(/\S+/g) || [];
+  }
+
   toString2DArray(s: string): string[][] {
     return this.toStringArray(s).map((s: string) => s.split(''));
   }

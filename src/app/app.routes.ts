@@ -18,6 +18,11 @@ import {day4Part12025Input} from "./2025/4/day4-part1-2025-input";
 import {Day4Part12025} from "./2025/4/day4-part1-2025";
 import {day4Part22025Input} from "./2025/4/day4-part2-2025-input";
 import {Day4Part22025} from "./2025/4/day4-part2-2025";
+import {day6Part12025Input} from "./2025/6/day6-part1-2025-input";
+import {Day6Part12025} from "./2025/6/day6-part1-2025";
+import {day6Part22025Input} from "./2025/6/day6-part2-2025-input";
+import {Day6Part22025} from "./2025/6/day6-part2-2025";
+
 
 
 
@@ -84,6 +89,22 @@ export const routes: Routes = [    {
         providers: [{provide: PUZZLE_INPUT, useValue: day4Part22025Input}, {
             provide: SOLUTION_SERVICE,
             useClass: Day4Part22025
+        }]
+    },
+    {
+        path: '2025/6/1',
+        component: PuzzlePart,
+        providers: [{provide: PUZZLE_INPUT, useValue: day6Part12025Input}, {
+            provide: SOLUTION_SERVICE,
+            useClass: Day6Part12025
+        }]
+    },
+    {
+        path: '2025/6/2',
+        component: PuzzlePart,
+        providers: [{provide: PUZZLE_INPUT, useValue: day6Part22025Input}, {
+            provide: SOLUTION_SERVICE,
+            useClass: Day6Part22025
         }]
     },
 ];
