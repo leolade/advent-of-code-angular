@@ -10,7 +10,6 @@ export class Day7Part12025 extends Solution<string, number> {
         let acc: number = 0;
         const lines = this.inputUtils.toString2DArray(input);
         for (let y = 1; y < lines.length; y++) {
-            console.log(lines.map(line => line.join('')).join('\n'));
             for (let x = 0; x < lines[y].length; x++) {
                 if (lines[y - 1][x] === 'S') {
                     lines[y][x] = '|';
